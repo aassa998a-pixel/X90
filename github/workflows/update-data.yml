@@ -1,0 +1,95 @@
+name: Update Football Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Fetch football data
+        env:
+          FOOTBALL_API_KEY: ${{ secrets.FOOTBALL_API_KEY }}
+        run: |
+          cat > update.py <<'PY'
+          import os
+          import json
+          import requests
+          from datetime import datetime, timedelta, timezone
+
+          key = os.environ["FOOTBALL_API_KEY"]
+          headers = {"X-Auth-Token": key}
+          base = "https://api.football-data.org/v4"
+
+          today = datetime.now(timezone.utc).date()
+          start = (today - timedelta(days=1)).isoformat()
+          end = (today + timedelta(days=7)).isoformat()
+
+          leagues = {
+              "PL": "الدوري الإنجليزي",
+              "PD": "الدوري الإسباني",
+              "CL": "دوري أبطال أوروبا",
+              "SA": "الدوري الإيطالي",
+              "BL1": "الدوري الألماني"
+          }
+
+          data = {
+              "updated": datetime.now(timezone.utc).isoformat(),
+              "matches": {},
+              "standings": {},
+              "errors": {}
+          }
+
+          for code, name in leagues.items():
+              try:
+                  r = requests.get(
+                      f"{base}/competitions/{code}/matches",
+                      headers=headers,
+                      params={"dateFrom": start, "dateTo": end},
+                      timeout=30
+                  )
+                  r.raise_for_status()
+                  data["matches"][code] = r.json().get("matches", [])
+
+                  r = requests.get(
+                      f"{base}/competitions/{code}/standings",
+                      headers=headers,
+                      timeout=30
+                  )
+                  r.raise_for_status()
+                  data["standings"][code] = r.json().get("standings", [])
+
+              except Exception as e:
+                  data["errors"][code] = str(e)
+
+          with open("data.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+
+          print("Football data file created.")
+          PY
+          python update.py
+
+      - name: Save updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "Update football data"
+          git push
