@@ -1,1 +1,68 @@
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X90 | مباريات اليوم</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#070907;color:white;font-family:Arial,sans-serif}
+header{background:#101510;padding:20px;text-align:center;border-bottom:2px solid #6cff00}
+.logo{font-size:48px;font-weight:bold;direction:ltr;color:white}
+.logo span{color:#6cff00}
+header p{color:#aaa;margin:5px}
+nav{display:flex;justify-content:center;gap:20px;padding:15px;background:#111}
+nav a{color:#6cff00;text-decoration:none}
+.hero{text-align:center;padding:45px 15px;background:linear-gradient(140deg,#192719,#070907)}
+h1{font-size:32px}
+h1 span{color:#6cff00}
+button{background:#6cff00;border:0;padding:13px 22px;border-radius:8px;font-weight:bold}
+section{padding:20px}
+h2{border-right:4px solid #6cff00;padding-right:10px}
+.card{background:#121712;border:1px solid #293529;border-radius:12px;padding:18px;margin:12px 0}
+.card p{color:#bbb;line-height:1.8}
+.badge{color:#6cff00}
+footer{text-align:center;padding:25px;color:#999;border-top:1px solid #293529}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">X<span>90</span></div>
+<p>كل المباريات في مكان واحد ⚽</p>
+</header>
+<nav>
+<a href="#matches">المباريات</a>
+<a href="#leagues">البطولات</a>
+<a href="#about">عن الموقع</a>
+</nav>
+<div class="hero">
+<div class="badge">● منصة كرة القدم</div>
+<h1>عش المباراة مع <span>X90</span></h1>
+<p>مواعيد المباريات والنتائج وأهم البطولات</p>
+<button onclick="document.getElementById('matches').scrollIntoView()">اكتشف الموقع</button>
+</div>
+<section id="matches">
+<h2>⚽ مباريات اليوم</h2>
+<div class="card">
+<h3>جدول المباريات</h3>
+<p>نعمل على تجهيز جدول المباريات وتحديث المواعيد حسب توقيت سلطنة عُمان.</p>
+<span class="badge">سيتم إضافة البيانات قريبًا</span>
+</div>
+</section>
+<section id="leagues">
+<h2>🏆 البطولات</h2>
+<div class="card">🏴 الدوري الإنجليزي</div>
+<div class="card">🇪🇸 الدوري الإسباني</div>
+<div class="card">🇮🇹 الدوري الإيطالي</div>
+<div class="card">🇸🇦 الدوري السعودي</div>
+<div class="card">🏆 دوري أبطال أوروبا</div>
+</section>
+<section id="about">
+<h2>عن X90</h2>
+<div class="card">
+<p>منصة رياضية تجمع مواعيد المباريات والنتائج وروابط المصادر الرسمية للمشاهدة.</p>
+</div>
+</section>
+<footer>X90 © 2026 — كل المباريات في مكان واحد</footer>
+</body>
+</html>
