@@ -201,5 +201,43 @@ loadMatches();
 setInterval(loadMatches,60000);
 </script>
 
+<section id="matches" style="padding:20px; text-align:center;">
+  <h2>⚽ مباريات اليوم</h2>
+  <div id="matches-container">
+    جاري تحميل المباريات...
+  </div>
+</section>
+
+<script>
+async function loadMatches() {
+  const container = document.getElementById("matches-container");
+
+  try {
+    const response = await fetch(
+      "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+    );
+
+    const data = await response.json();
+    const events = data.events || [];
+
+    if (events.length === 0) {
+      container.innerHTML = "لا توجد مباريات متاحة حالياً.";
+      return;
+    }
+
+    container.innerHTML = events.map(match => `
+      <div style="border:1px solid #ddd; padding:12px; margin:10px auto; max-width:500px; border-radius:10px;">
+        <strong>${match.name}</strong><br>
+        ${match.status.type.detail}
+      </div>
+    `).join("");
+
+  } catch (error) {
+    container.innerHTML = "تعذر تحميل المباريات حالياً.";
+  }
+}
+
+loadMatches();
+</script>
 </body>
 </html>
