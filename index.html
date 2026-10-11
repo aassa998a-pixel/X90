@@ -3,218 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>X90 | عالم كرة القدم</title>
+<meta name="theme-color" content="#080b0a">
+<meta name="description" content="السعدي سبورت - أخبار ومواعيد كرة القدم والبطولات العالمية والعربية">
+<title>السعدي سبورت | AL SAADI SPORT</title>
+
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
- margin:0;background:#070907;color:white;
- font-family:Arial,sans-serif
+  margin:0;
+  background:#080b0a;
+  color:#fff;
+  font-family:Arial,Tahoma,sans-serif;
 }
 header{
- background:#101510;padding:20px;text-align:center;
- border-bottom:2px solid #6cff00
+  text-align:center;
+  padding:24px 12px;
+  background:#101713;
+  border-bottom:2px solid #39ff88;
 }
-.logo{font-size:48px;font-weight:bold;direction:ltr}
-.logo span{color:#6cff00}
-header p{color:#aaa;margin:6px}
+.logo{
+  font-size:clamp(27px,6vw,40px);
+  font-weight:bold;
+  color:#39ff88;
+}
+.subtitle{color:#bbb;margin:10px 0 0}
 nav{
- display:flex;justify-content:center;gap:20px;
- padding:15px;background:#111;flex-wrap:wrap
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:16px 10px;
+  background:#0c100d;
 }
-nav a{color:#6cff00;text-decoration:none;font-weight:bold}
+nav a{
+  color:#39ff88;
+  text-decoration:none;
+  font-weight:bold;
+}
 .hero{
- text-align:center;padding:45px 15px;
- background:linear-gradient(140deg,#192719,#070907)
+  text-align:center;
+  padding:42px 15px;
+  background:linear-gradient(135deg,#163522,#080b0a);
 }
-.hero h1{font-size:32px}
-.hero h1 span{color:#6cff00}
-.hero p{color:#bbb;line-height:1.8}
-button{
- background:#6cff00;border:0;padding:12px 20px;
- border-radius:8px;font-weight:bold;cursor:pointer
+.hero h1{font-size:clamp(25px,5vw,36px)}
+.hero h1 span{color:#39ff88}
+.hero p{color:#ddd;line-height:1.9}
+.container{max-width:950px;margin:auto;padding:18px}
+.title{
+  border-right:4px solid #39ff88;
+  padding-right:12px;
+  margin:28px 0 18px;
 }
-section{padding:20px;max-width:900px;margin:auto}
-h2{border-right:4px solid #6cff00;padding-right:10px}
 .card{
- background:#121712;border:1px solid #293529;
- border-radius:14px;padding:18px;margin:14px 0
+  background:#111814;
+  border:1px solid #293b2e;
+  border-radius:15px;
+  padding:20px;
+  margin:15px 0;
 }
-.league-title{color:#6cff00;font-weight:bold}
-.match{
- display:grid;grid-template-columns:1fr auto 1fr;
- align-items:center;text-align:center;gap:10px;margin:22px 0
+.badge{
+  display:inline-block;
+  background:#203d2b;
+  color:#65ffa1;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:13px;
 }
-.team{font-weight:bold;line-height:1.8}
-.team img{
- width:48px;height:48px;object-fit:contain;
- display:block;margin:0 auto 8px
+.teams{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  gap:10px;
+  text-align:center;
+  margin:25px 0;
+  font-size:17px;
+  font-weight:bold;
 }
-.vs{color:#6cff00;font-weight:bold}
-.match-time{
- color:#ddd;text-align:center;background:#1b211b;
- padding:10px;border-radius:8px;font-size:14px
+.team{flex:1;line-height:1.8}
+.vs{color:#39ff88;font-size:14px}
+.muted{color:#bbb;line-height:1.9}
+.btn{
+  display:inline-block;
+  background:#39ff88;
+  color:#07130b;
+  text-decoration:none;
+  padding:11px 17px;
+  border-radius:8px;
+  font-weight:bold;
+  margin:7px 4px 0 0;
 }
-.status{color:#6cff00;font-size:13px;margin-top:8px}
-.league-grid{
- display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+.btn-secondary{background:#26382d;color:#fff}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
 }
 .league{
- background:#121712;border:1px solid #293529;
- padding:18px;border-radius:12px;text-align:center
+  background:#111814;
+  border:1px solid #293b2e;
+  border-radius:12px;
+  padding:18px 10px;
+  text-align:center;
+  color:#fff;
 }
-.note{font-size:13px;color:#999;line-height:1.8}
 footer{
- text-align:center;padding:25px;color:#999;
- border-top:1px solid #293529;margin-top:20px
+  text-align:center;
+  padding:25px 12px;
+  color:#aaa;
+  background:#101713;
+  border-top:1px solid #293b2e;
+  margin-top:30px;
 }
-@media(max-width:450px){
- .hero h1{font-size:26px}
- .match{gap:5px}
- .team{font-size:13px}
- .team img{width:38px;height:38px}
- .league-grid{grid-template-columns:1fr 1fr}
- nav{gap:14px}
+@media(min-width:600px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 </style>
 </head>
+
 <body>
+
 <header>
- <div class="logo">X<span>90</span></div>
- <p>كل المباريات في مكان واحد ⚽</p>
+  <div class="logo">السعدي سبورت ⚽</div>
+  <p class="subtitle">AL SAADI SPORT | كرة القدم في مكان واحد</p>
 </header>
+
 <nav>
- <a href="#matches">المباريات</a>
- <a href="#leagues">البطولات</a>
- <a href="#about">عن الموقع</a>
+  <a href="#matches">المباريات</a>
+  <a href="#leagues">الدوريات</a>
+  <a href="#watch">المشاهدة</a>
+  <a href="#about">عن الموقع</a>
 </nav>
-<div class="hero">
- <div style="color:#6cff00">● عالم كرة القدم</div>
- <h1>عش المباراة مع <span>X90</span></h1>
- <p>مواعيد المباريات والنتائج وأهم البطولات العالمية والعربية</p>
- <button onclick="document.getElementById('matches').scrollIntoView()">
- شاهد المباريات
- </button>
-</div>
+
+<section class="hero">
+  <h1>عالم كرة القدم مع <span>السعدي سبورت</span></h1>
+  <p>مباريات • بطولات • مواعيد • أخبار كرة القدم</p>
+  <a class="btn" href="#matches">استكشف المباريات ⚽</a>
+</section>
+
+<main class="container">
+
 <section id="matches">
- <h2>⚽ المباريات</h2>
- <div <div class="card">
-  <div class="league-title">🏴 الدوري الإنجليزي الممتاز</div>
-  <div class="match">
-    <div class="team">
-      <img src="https://media.api-sports.io/football/teams/40.png"
-           alt="شعار ليفربول">
-      ليفربول
+  <h2 class="title">⚽ مباريات اليوم</h2>
+
+  <div class="card">
+    <span class="badge">الدوري الإنجليزي</span>
+    <div class="teams">
+      <div class="team">كريستال بالاس</div>
+      <div class="vs">VS</div>
+      <div class="team">نوتنغهام فورست</div>
     </div>
-    <div class="vs">VS</div>
-    <div class="team">
-      <img src="https://media.api-sports.io/football/teams/50.png"
-           alt="شعار مانشستر سيتي">
-      مانشستر سيتي
+    <p class="muted">🕒 الموعد: يحتاج إلى تأكيد من الجدول الرسمي.</p>
+  </div>
+
+  <div class="card">
+    <span class="badge">الدوري الإنجليزي</span>
+    <div class="teams">
+      <div class="team">ليفربول</div>
+      <div class="vs">VS</div>
+      <div class="team">مانشستر سيتي</div>
     </div>
+    <p class="muted">🕒 الموعد: يحتاج إلى تأكيد من الجدول الرسمي.</p>
   </div>
-  <div class="match-time">
-    📅 الأحد 11 أكتوبر 2026<br>
-    🕒 7:30 مساءً بتوقيت سلطنة عُمان<br>
-    🏟️ ملعب أنفيلد
+
+  <div class="card">
+    <span class="badge">الدوري الإسباني</span>
+    <div class="teams">
+      <div class="team">إلتشي</div>
+      <div class="vs">VS</div>
+      <div class="team">سيلتا فيغو</div>
+    </div>
+    <p class="muted">🕒 الموعد: يحتاج إلى تأكيد من الجدول الرسمي.</p>
   </div>
-  <div style="text-align:center;margin-top:18px">
-    <a href="https://www.skysports.com/watch"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-block;background:#6cff00;color:#071007;
-       padding:13px 25px;border-radius:8px;text-decoration:none;
-       font-weight:bold">
-       ▶ المشاهدة الرسمية
-    </a>
+
+  <div class="card">
+    <span class="badge">الدوري السعودي روشن</span>
+    <div class="teams">
+      <div class="team">الفريق الأول</div>
+      <div class="vs">VS</div>
+      <div class="team">الفريق الثاني</div>
+    </div>
+    <p class="muted">🕒 أضف أسماء الفرق وموعد المباراة بعد التأكد من الجدول الرسمي.</p>
   </div>
-  <p class="note" style="text-align:center;margin-top:12px">
-    رابط المشاهدة يفتح موقع Sky Sports.
-    توفر البث يعتمد على المنطقة وحقوق النقل.
+
+  <p class="muted">
+    تنبيه: هذه بطاقات تجريبية للتصميم، وليست جدولًا مباشرًا أو تأكيدًا لمباريات اليوم.
+    ستحتاج إلى تحديثها يدويًا بالمعلومات الصحيحة.
   </p>
-</div>
-   </div>
-  </div>
-  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
-  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
- </div>
- <div class="card">
-  <div class="league-title">🇪🇸 الدوري الإسباني</div>
-  <div class="match">
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/529.png" alt="شعار برشلونة">
-    برشلونة
-   </div>
-   <div class="vs">VS</div>
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/541.png" alt="شعار ريال مدريد">
-    ريال مدريد
-   </div>
-  </div>
-  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
-  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
- </div>
- <div class="card">
-  <div class="league-title">🇮🇹 الدوري الإيطالي</div>
-  <div class="match">
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/489.png" alt="شعار ميلان">
-    ميلان
-   </div>
-   <div class="vs">VS</div>
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/505.png" alt="شعار إنتر">
-    إنتر
-   </div>
-  </div>
-  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
-  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
- </div>
- <div class="card">
-  <div class="league-title">🇸🇦 الدوري السعودي</div>
-  <div class="match">
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/293.png" alt="شعار الهلال">
-    الهلال
-   </div>
-   <div class="vs">VS</div>
-   <div class="team">
-    <img src="https://media.api-sports.io/football/teams/292.png" alt="شعار النصر">
-    النصر
-   </div>
-  </div>
-  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
-  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
- </div>
- <p class="note">
- تنبيه: هذه مباريات نموذجية لتوضيح شكل الموقع، وليست جدول مباريات اليوم.
- حدّث أسماء الفرق والمواعيد قبل النشر. تحتاج الشعارات إلى اتصال بالإنترنت.
- </p>
 </section>
+
 <section id="leagues">
- <h2>🏆 البطولات</h2>
- <div class="league-grid">
-  <div class="league">🏴 الدوري الإنجليزي</div>
-  <div class="league">🇪🇸 الدوري الإسباني</div>
-  <div class="league">🇮🇹 الدوري الإيطالي</div>
-  <div class="league">🇩🇪 الدوري الألماني</div>
-  <div class="league">🇫🇷 الدوري الفرنسي</div>
-  <div class="league">🇸🇦 الدوري السعودي</div>
-  <div class="league">🏆 دوري أبطال أوروبا</div>
-  <div class="league">🌏 دوري أبطال آسيا</div>
- </div>
+  <h2 class="title">🏆 الدوريات والبطولات</h2>
+  <div class="grid">
+    <div class="league">🏴 الدوري الإنجليزي</div>
+    <div class="league">🇪🇸 الدوري الإسباني</div>
+    <div class="league">🇮🇹 الدوري الإيطالي</div>
+    <div class="league">🇩🇪 الدوري الألماني</div>
+    <div class="league">🇫🇷 الدوري الفرنسي</div>
+    <div class="league">🇸🇦 الدوري السعودي</div>
+    <div class="league">🇴🇲 الدوري العُماني</div>
+    <div class="league">🌏 دوري أبطال آسيا</div>
+    <div class="league">🏆 دوري أبطال أوروبا</div>
+    <div class="league">🌍 كأس العالم</div>
+    <div class="league">🌏 كأس آسيا</div>
+    <div class="league">🏆 كأس الخليج</div>
+  </div>
 </section>
+
+<section id="watch">
+  <h2 class="title">📺 المشاهدة الرسمية</h2>
+  <div class="card">
+    <h3>مصادر كرة القدم الرسمية</h3>
+    <p class="muted">
+      اختر المصدر الرسمي لمعرفة مواعيد النقل وتوفر المشاهدة في بلدك.
+    </p>
+    <a class="btn" href="https://www.bein.com/" target="_blank" rel="noopener">beIN SPORTS</a>
+    <a class="btn btn-secondary" href="https://www.the-afc.com/" target="_blank" rel="noopener">الاتحاد الآسيوي</a>
+    <a class="btn btn-secondary" href="https://www.spl.com.sa/" target="_blank" rel="noopener">الدوري السعودي</a>
+  </div>
+</section>
+
 <section id="about">
- <h2>عن X90</h2>
- <div class="card">
-  <p style="color:#bbb;line-height:1.9">
-   X90 منصة لعشاق كرة القدم، تجمع معلومات المباريات والبطولات
-   في تصميم واحد يناسب الهاتف والكمبيوتر.
-  </p>
- </div>
+  <h2 class="title">ℹ️ عن السعدي سبورت</h2>
+  <div class="card">
+    <p class="muted">
+      السعدي سبورت مشروع رياضي مستقل يهتم بكرة القدم والبطولات العربية والعالمية.
+      هدفنا تقديم تجربة سهلة لمتابعة المباريات ومواعيدها والوصول إلى المصادر الرسمية.
+    </p>
+  </div>
 </section>
+
+</main>
+
 <footer>
- X90 © 2026 — كل المباريات في مكان واحد ⚽
+  <p>السعدي سبورت ⚽ | موقع رياضي مستقل</p>
+  <p>© 2026 السعدي سبورت</p>
 </footer>
+
 </body>
 </html>
