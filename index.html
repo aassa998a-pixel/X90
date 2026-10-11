@@ -1,243 +1,31 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>X90 | عالم كرة القدم</title>
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#080d12;color:#fff;
- font-family:Arial,sans-serif
-}
-header{
- background:#101923;padding:20px;text-align:center;
- border-bottom:3px solid #8cff00
-}
-.logo{font-size:42px;font-weight:bold;direction:ltr}
-.logo span{color:#8cff00}
-header p{color:#b5c0cc}
-nav{
- display:flex;justify-content:center;gap:18px;
- padding:15px;background:#111a24;
- flex-wrap:wrap
-}
-nav a{color:#8cff00;text-decoration:none;font-weight:bold}
-.hero{
- padding:35px 15px;text-align:center;
- background:linear-gradient(140deg,#163522,#080d12)
-}
-.hero h1{font-size:28px}
-.hero h1 span{color:#8cff00}
-button,.tab{
- background:#8cff00;color:#101510;border:0;
- padding:11px 15px;border-radius:8px;
- font-weight:bold;cursor:pointer
-}
-section{padding:18px;max-width:850px;margin:auto}
-h2{
- border-right:4px solid #8cff00;
- padding-right:10px;font-size:22px
-}
-.card{
- background:#121c26;border:1px solid #293744;
- border-radius:12px;padding:16px;margin:12px 0
-}
-.muted{color:#aebbc8;line-height:1.8}
-.tabs{display:flex;gap:8px;flex-wrap:wrap}
-.tabs button{margin:3px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:11px 5px;text-align:center;
- border-bottom:1px solid #293744}
-th{color:#8cff00}
-.table-wrap{overflow-x:auto}
-.status{color:#8cff00;font-weight:bold}
-footer{text-align:center;padding:25px;color:#aebbc8}
-</style>
-</head>
-<body>
-
-<header>
- <div class="logo">X<span>90</span></div>
- <p>كل كرة القدم في مكان واحد ⚽</p>
-</header>
-
-<nav>
- <a href="#matches">المباريات</a>
- <a href="#leagues">الدوريات</a>
- <a href="#standings">الترتيب</a>
- <a href="#about">عن الموقع</a>
-</nav>
-
-<div class="hero">
- <h1>عالم كرة القدم مع <span>X90</span></h1>
- <p>المباريات والنتائج وجداول الدوريات في مكان واحد</p>
- <button onclick="document.querySelector('#matches').scrollIntoView()">
- شاهد المباريات
- </button>
-</div>
-
-<section id="matches">
- <h2>⚽ المباريات</h2>
- <div class="tabs">
-  <button onclick="loadMatches('today')">مباريات اليوم</button>
-  <button onclick="loadMatches('upcoming')">المباريات القادمة</button>
-  <button onclick="loadMatches('live')">مباشر</button>
- </div>
- <div id="matches-list" class="card">
-  <p class="muted">جارٍ تحميل بيانات المباريات...</p>
- </div>
-</section>
-
-<section id="leagues">
- <h2>🏆 الدوريات والبطولات</h2>
- <div class="card">🏴 الدوري الإنجليزي الممتاز</div>
- <div class="card">🇸🇦 دوري روشن السعودي</div>
- <div class="card">🇪🇸 الدوري الإسباني</div>
- <div class="card">🇮🇹 الدوري الإيطالي</div>
- <div class="card">🇩🇪 الدوري الألماني</div>
- <div class="card">🏆 دوري أبطال أوروبا</div>
-</section>
-
-<section id="standings">
- <h2>📊 جدول الترتيب</h2>
- <div class="tabs">
-  <button onclick="loadTable('premier')">الإنجليزي</button>
-  <button onclick="loadTable('saudi')">السعودي</button>
- </div>
- <div id="table-content" class="card">
-  <p class="muted">سيظهر جدول الترتيب بعد ربط مصدر البيانات.</p>
- </div>
-</section>
-
-<section id="about">
- <h2>عن X90</h2>
- <div class="card">
-  <p class="muted">
-   X90 منصة لمتابعة كرة القدم، تشمل مواعيد المباريات
-   والنتائج وجداول ترتيب الفرق والبطولات.
-   ستُعرض روابط المصادر الرسمية عند توفرها.
-  </p>
- </div>
-</section>
-
-<footer>X90 © 2026 — عالم كرة القدم</footer>
-
-<script>
-let allMatches = [];
-
-async function getData(){
- try{
-  const response = await fetch('./data.json?t='+Date.now());
-  if(!response.ok) throw new Error('No data');
-  const data = await response.json();
-  allMatches = data.matches || [];
-  return data;
- }catch(e){
-  return null;
- }
-}
-
-async function loadMatches(type='today'){
- const box = document.getElementById('matches-list');
- box.innerHTML='<p class="muted">جارٍ تحميل البيانات...</p>';
-
- const data = await getData();
-
- if(!data){
-  box.innerHTML=
-   '<p>لم يتم ربط بيانات المباريات بعد.</p>'+
-   '<p class="muted">الخطوة التالية هي إعداد مصدر بيانات حقيقي وربطه بالموقع.</p>';
-  return;
- }
-
- const now = Date.now();
- let list = allMatches.filter(m=>{
-  const start = new Date(m.date).getTime();
-  if(type==='live') return m.status==='LIVE';
-  if(type==='upcoming') return start>now;
-  return new Date(m.date).toDateString()===
-         new Date().toDateString();
- });
-
- if(!list.length){
-  box.innerHTML='<p class="muted">لا توجد مباريات متاحة في هذا القسم حاليًا.</p>';
-  return;
- }
-
- box.innerHTML=list.map(m=>`
-  <div class="card">
-   <div class="status">${m.league||'مباراة'}</div>
-   <h3>${m.home||'الفريق الأول'} &nbsp; ${m.homeScore??''}
-   - ${m.awayScore??''} &nbsp; ${m.away||'الفريق الثاني'}</h3>
-   <p class="muted">${new Date(m.date).toLocaleString('ar-OM',{
-    timeZone:'Asia/Muscat'
-   })}</p>
-   ${m.url?`<a href="${m.url}" target="_blank" rel="noopener" style="color:#8cff00">المصدر الرسمي</a>`:''}
-  </div>`).join('');
-}
-
-async function loadTable(league){
- const box=document.getElementById('table-content');
- const data=await getData();
-
- const rows=data?.standings?.[league];
-
- if(!rows||!rows.length){
-  box.innerHTML='<p class="muted">جدول الترتيب سيظهر بعد ربط بيانات الدوري.</p>';
-  return;
- }
-
- box.innerHTML=`<div class="table-wrap"><table>
- <tr><th>المركز</th><th>الفريق</th><th>لعب</th><th>فارق</th><th>النقاط</th></tr>
- ${rows.map((t,i)=>`<tr>
- <td>${i+1}</td><td>${t.team}</td><td>${t.played}</td>
- <td>${t.gd}</td><td>${t.points}</td>
- </tr>`).join('')}
- </table></div>`;
-}
-
-loadMatches();
-setInterval(loadMatches,60000);
-</script>
-
-<section id="matches" style="padding:20px; text-align:center;">
-  <h2>⚽ مباريات اليوم</h2>
-  <div id="matches-container">
-    جاري تحميل المباريات...
-  </div>
-</section>
-
-<script>
-async function loadMatches() {
-  const container = document.getElementById("matches-container");
-
-  try {
-    const response = await fetch(
-      "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
-    );
-
-    const data = await response.json();
-    const events = data.events || [];
-
-    if (events.length === 0) {
-      container.innerHTML = "لا توجد مباريات متاحة حالياً.";
-      return;
-    }
-
-    container.innerHTML = events.map(match => `
-      <div style="border:1px solid #ddd; padding:12px; margin:10px auto; max-width:500px; border-radius:10px;">
-        <strong>${match.name}</strong><br>
-        ${match.status.type.detail}
-      </div>
-    `).join("");
-
-  } catch (error) {
-    container.innerHTML = "تعذر تحميل المباريات حالياً.";
-  }
-}
-
-loadMatches();
-</script>
-</body>
-</html>
+X90
+المباريات وروابط المشاهدة الرسمية
+المباريات
+البطولات
+عن X90
+● منصة كرة القدم
+تابع المباراة مع X90
+مواعيد المباريات وروابط المشاهدة الرسمية في مكان واحد، بتوقيت سلطنة عُمان.
+تصفّح المباريات ↓
+⚽ المباريات
+توقيت سلطنة عُمان · UTC+4
+لا توجد مباريات مضافة حاليًا
+أضف بطاقة مباراة بعد التأكد من موعدها، وضع رابط المشاهدة الرسمي أو المصرح به. لا تضع روابط بث غير مصرح بها.
+🏆 البطولات
+البطولات التي نتابعها
+🏴 الدوري الإنجليزي
+المواعيد والروابط الرسمية
+🇪🇸 الدوري الإسباني
+المواعيد والروابط الرسمية
+🇮🇹 الدوري الإيطالي
+المواعيد والروابط الرسمية
+🇩🇪 الدوري الألماني
+المواعيد والروابط الرسمية
+🇸🇦 الدوري السعودي
+المواعيد والروابط الرسمية
+🏆 البطولات الأوروبية
+المواعيد والروابط الرسمية
+عن X90
+X90 مشروع رياضي مستقل. روابط المشاهدة تُضاف فقط عندما تكون رسمية أو مصرحًا بمشاركتها. هذه النسخة لا تتضمن بيانات مباريات مباشرة أو تلقائية.
+X90
+© 2026 X90 · نسخة أولية
