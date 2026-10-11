@@ -3,102 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>X90 | مباريات اليوم</title>
+<title>X90 | عالم كرة القدم</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#070907;color:white;font-family:Arial,sans-serif}
-header{background:#101510;padding:20px;text-align:center;border-bottom:2px solid #6cff00}
-.logo{font-size:48px;font-weight:bold;direction:ltr;color:white}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:#070907;color:white;
+ font-family:Arial,sans-serif
+}
+header{
+ background:#101510;padding:20px;text-align:center;
+ border-bottom:2px solid #6cff00
+}
+.logo{font-size:48px;font-weight:bold;direction:ltr}
 .logo span{color:#6cff00}
-header p{color:#aaa;margin:5px}
-nav{display:flex;justify-content:center;gap:20px;padding:15px;background:#111}
-nav a{color:#6cff00;text-decoration:none}
-.hero{text-align:center;padding:45px 15px;background:linear-gradient(140deg,#192719,#070907)}
-h1{font-size:32px}
-h1 span{color:#6cff00}
-button{background:#6cff00;border:0;padding:13px 22px;border-radius:8px;font-weight:bold}
-section{padding:20px}
+header p{color:#aaa;margin:6px}
+nav{
+ display:flex;justify-content:center;gap:20px;
+ padding:15px;background:#111;flex-wrap:wrap
+}
+nav a{color:#6cff00;text-decoration:none;font-weight:bold}
+.hero{
+ text-align:center;padding:45px 15px;
+ background:linear-gradient(140deg,#192719,#070907)
+}
+.hero h1{font-size:32px}
+.hero h1 span{color:#6cff00}
+.hero p{color:#bbb;line-height:1.8}
+button{
+ background:#6cff00;border:0;padding:12px 20px;
+ border-radius:8px;font-weight:bold;cursor:pointer
+}
+section{padding:20px;max-width:900px;margin:auto}
 h2{border-right:4px solid #6cff00;padding-right:10px}
-.card{background:#121712;border:1px solid #293529;border-radius:12px;padding:18px;margin:12px 0}
-.card p{color:#bbb;line-height:1.8}
-.badge{color:#6cff00}
-footer{text-align:center;padding:25px;color:#999;border-top:1px solid #293529}
+.card{
+ background:#121712;border:1px solid #293529;
+ border-radius:14px;padding:18px;margin:14px 0
+}
+.league-title{color:#6cff00;font-weight:bold}
+.match{
+ display:grid;grid-template-columns:1fr auto 1fr;
+ align-items:center;text-align:center;gap:10px;margin:22px 0
+}
+.team{font-weight:bold;line-height:1.8}
+.team img{
+ width:48px;height:48px;object-fit:contain;
+ display:block;margin:0 auto 8px
+}
+.vs{color:#6cff00;font-weight:bold}
+.match-time{
+ color:#ddd;text-align:center;background:#1b211b;
+ padding:10px;border-radius:8px;font-size:14px
+}
+.status{color:#6cff00;font-size:13px;margin-top:8px}
+.league-grid{
+ display:grid;grid-template-columns:repeat(2,1fr);gap:12px
+}
+.league{
+ background:#121712;border:1px solid #293529;
+ padding:18px;border-radius:12px;text-align:center
+}
+.note{font-size:13px;color:#999;line-height:1.8}
+footer{
+ text-align:center;padding:25px;color:#999;
+ border-top:1px solid #293529;margin-top:20px
+}
+@media(max-width:450px){
+ .hero h1{font-size:26px}
+ .match{gap:5px}
+ .team{font-size:13px}
+ .team img{width:38px;height:38px}
+ .league-grid{grid-template-columns:1fr 1fr}
+ nav{gap:14px}
+}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">X<span>90</span></div>
-<p>كل المباريات في مكان واحد ⚽</p>
+ <div class="logo">X<span>90</span></div>
+ <p>كل المباريات في مكان واحد ⚽</p>
 </header>
 <nav>
-<a href="#matches">المباريات</a>
-<a href="#leagues">البطولات</a>
-<a href="#about">عن الموقع</a>
+ <a href="#matches">المباريات</a>
+ <a href="#leagues">البطولات</a>
+ <a href="#about">عن الموقع</a>
 </nav>
 <div class="hero">
-<div class="badge">● منصة كرة القدم</div>
-<h1>عش المباراة مع <span>X90</span></h1>
-<p>مواعيد المباريات والنتائج وأهم البطولات</p>
-<button onclick="document.getElementById('matches').scrollIntoView()">اكتشف الموقع</button>
+ <div style="color:#6cff00">● عالم كرة القدم</div>
+ <h1>عش المباراة مع <span>X90</span></h1>
+ <p>مواعيد المباريات والنتائج وأهم البطولات العالمية والعربية</p>
+ <button onclick="document.getElementById('matches').scrollIntoView()">
+ شاهد المباريات
+ </button>
 </div>
 <section id="matches">
-<h2>⚽ مباريات اليوم</h2>
-<div class="card">
-<h3>جدول المباريات</h3>
-<p>نعمل على تجهيز جدول المباريات وتحديث المواعيد حسب توقيت سلطنة عُمان.</p>
-<span class="badge">سيتم إضافة البيانات قريبًا</span>
-</div>
-<section id="matches">
-<h2 class="title">⚽ مباريات اليوم</h2>
-
-<div class="card">
-  <span class="badge">الدوري الإنجليزي</span>
-  <div class="teams">
-    <div>كريستال بالاس</div>
-    <div class="vs">VS</div>
-    <div>نوتنغهام فورست</div>
+ <h2>⚽ المباريات</h2>
+ <div class="card">
+  <div class="league-title">🏴 الدوري الإنجليزي</div>
+  <div class="match">
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/40.png" alt="شعار ليفربول">
+    ليفربول
+   </div>
+   <div class="vs">VS</div>
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/50.png" alt="شعار مانشستر سيتي">
+    مانشستر سيتي
+   </div>
   </div>
-  <p class="muted">🕒 الموعد: أضف التوقيت المؤكد بتوقيت عُمان</p>
-  <span class="badge">موعد المباراة يحتاج تأكيدًا</span>
-</div>
-
-<div class="card">
-  <span class="badge">الدوري الإنجليزي</span>
-  <div class="teams">
-    <div>ليفربول</div>
-    <div class="vs">VS</div>
-    <div>مانشستر سيتي</div>
+  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
+  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
+ </div>
+ <div class="card">
+  <div class="league-title">🇪🇸 الدوري الإسباني</div>
+  <div class="match">
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/529.png" alt="شعار برشلونة">
+    برشلونة
+   </div>
+   <div class="vs">VS</div>
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/541.png" alt="شعار ريال مدريد">
+    ريال مدريد
+   </div>
   </div>
-  <p class="muted">🕒 الموعد: أضف التوقيت المؤكد بتوقيت عُمان</p>
-  <span class="badge">موعد المباراة يحتاج تأكيدًا</span>
-</div>
-
-<div class="card">
-  <span class="badge">الدوري الإسباني</span>
-  <div class="teams">
-    <div>إلتشي</div>
-    <div class="vs">VS</div>
-    <div>سيلتا فيغو</div>
+  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
+  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
+ </div>
+ <div class="card">
+  <div class="league-title">🇮🇹 الدوري الإيطالي</div>
+  <div class="match">
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/489.png" alt="شعار ميلان">
+    ميلان
+   </div>
+   <div class="vs">VS</div>
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/505.png" alt="شعار إنتر">
+    إنتر
+   </div>
   </div>
-  <p class="muted">🕒 الموعد: أضف التوقيت المؤكد بتوقيت عُمان</p>
-  <span class="badge">موعد المباراة يحتاج تأكيدًا</span>
-</div>
-
+  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
+  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
+ </div>
+ <div class="card">
+  <div class="league-title">🇸🇦 الدوري السعودي</div>
+  <div class="match">
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/293.png" alt="شعار الهلال">
+    الهلال
+   </div>
+   <div class="vs">VS</div>
+   <div class="team">
+    <img src="https://media.api-sports.io/football/teams/292.png" alt="شعار النصر">
+    النصر
+   </div>
+  </div>
+  <div class="match-time">🕒 أضف موعد المباراة بتوقيت عُمان</div>
+  <div class="status">موعد المباراة يحتاج إلى تحديث يدوي</div>
+ </div>
+ <p class="note">
+ تنبيه: هذه مباريات نموذجية لتوضيح شكل الموقع، وليست جدول مباريات اليوم.
+ حدّث أسماء الفرق والمواعيد قبل النشر. تحتاج الشعارات إلى اتصال بالإنترنت.
+ </p>
 </section>
 <section id="leagues">
-<h2>🏆 البطولات</h2>
-<div class="card">🏴 الدوري الإنجليزي</div>
-<div class="card">🇪🇸 الدوري الإسباني</div>
-<div class="card">🇮🇹 الدوري الإيطالي</div>
-<div class="card">🇸🇦 الدوري السعودي</div>
-<div class="card">🏆 دوري أبطال أوروبا</div>
+ <h2>🏆 البطولات</h2>
+ <div class="league-grid">
+  <div class="league">🏴 الدوري الإنجليزي</div>
+  <div class="league">🇪🇸 الدوري الإسباني</div>
+  <div class="league">🇮🇹 الدوري الإيطالي</div>
+  <div class="league">🇩🇪 الدوري الألماني</div>
+  <div class="league">🇫🇷 الدوري الفرنسي</div>
+  <div class="league">🇸🇦 الدوري السعودي</div>
+  <div class="league">🏆 دوري أبطال أوروبا</div>
+  <div class="league">🌏 دوري أبطال آسيا</div>
+ </div>
 </section>
 <section id="about">
-<h2>عن X90</h2>
-<div class="card">
-<p>منصة رياضية تجمع مواعيد المباريات والنتائج وروابط المصادر الرسمية للمشاهدة.</p>
-</div>
+ <h2>عن X90</h2>
+ <div class="card">
+  <p style="color:#bbb;line-height:1.9">
+   X90 منصة لعشاق كرة القدم، تجمع معلومات المباريات والبطولات
+   في تصميم واحد يناسب الهاتف والكمبيوتر.
+  </p>
+ </div>
 </section>
-<footer>X90 © 2026 — كل المباريات في مكان واحد</footer>
+<footer>
+ X90 © 2026 — كل المباريات في مكان واحد ⚽
+</footer>
 </body>
 </html>
